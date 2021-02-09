@@ -1,0 +1,69 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "title": "json-server",
+      "author": "typicode"
+    },
+    {
+      "ccNumber": "2342 2223 3221 2334",
+      "ccHolder": "dasdds",
+      "ccExpirationDate": "2022-02-01T08:00:00.000Z",
+      "ccSecurityCode": "223",
+      "ccAmount": "12313",
+      "id": 2
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  },
+  "credit-card-details": [
+    {
+      "ccNumber": "3224 2222 1212 3333",
+      "ccHolder": "dasdds",
+      "ccExpirationDate": "2022-02-01T08:00:00.000Z",
+      "ccSecurityCode": "212",
+      "ccAmount": "1233",
+      "id": 1
+    },
+    {
+      "ccNumber": "3224 2222 1212 3333",
+      "ccHolder": "dasdds",
+      "ccExpirationDate": "2023-02-01T08:00:00.000Z",
+      "ccSecurityCode": "214",
+      "ccAmount": "12332422",
+      "id": 2
+    },
+    {
+      "ccNumber": "2123 2234 4342 3444",
+      "ccHolder": "Zaid",
+      "ccExpirationDate": "2022-04-01T07:00:00.000Z",
+      "ccSecurityCode": "344",
+      "ccAmount": "10000",
+      "id": 3
+    },
+    {
+      "ccNumber": "3224 2323 2323 4543",
+      "ccHolder": "Syed",
+      "ccExpirationDate": "2022-03-09T20:05:32.516Z",
+      "ccSecurityCode": "234",
+      "ccAmount": "273383",
+      "id": 4
+    },
+    {
+      "ccNumber": "1234 5556 5432 2111",
+      "ccHolder": "Ali",
+      "ccExpirationDate": "2021-02-09T20:55:20.048Z",
+      "ccSecurityCode": null,
+      "ccAmount": "-8",
+      "id": 5
+    }
+  ]
+}

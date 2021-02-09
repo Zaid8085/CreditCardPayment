@@ -1,0 +1,28 @@
+mat-card {
+  margin: 20px;
+  width: 500px;
+  height: 460px;
+  mat-card-header {
+    border-bottom: 2px solid #009fdb;
+  }
+}
+#datepicker {
+  width: 200px !important;
+}
+.submit-btn {
+  position: relative;
+  bottom: 30px;
+  right: 74px;
+  span {
+    font-size: 18px;
+  }
+}
+.border-bottom {
+  border-bottom: 2px solid #009fdb;
+}
+::ng-deep .security-code {
+  width: 80% !important;
+}
+::ng-deep .mat-card-header-text {
+  margin: 0 !important;
+}

@@ -1,0 +1,15 @@
+<div class="header mat-elevation-z3">
+  <button
+    mat-raised-button
+    color="primary"
+    [ngStyle]="{ 'margin-left': homeBtn ? '20px' : '144px' }"
+    (click)="routeToPayment()"
+  >
+    <span class="material-icons">
+      {{ homeBtn ? "home" : "add" }}
+    </span>
+    {{ homeBtn ? "Home" : "Add Credit Card" }}
+  </button>
+</div>
+
+<router-outlet></router-outlet>
