@@ -14,7 +14,9 @@ import * as _moment from 'moment';
 import { Moment } from 'moment';
 import { SuccessSnackbarComponent } from 'src/app/shared/components/success-snackbar/success-snackbar.component';
 import { Message } from 'src/app/shared/messages/message';
+import { CreditCardPaymentDetails } from 'src/app/shared/models/credit-card-payment-details';
 import { CreditCardService } from 'src/app/shared/services/credit-card.service';
+
 @Component({
   selector: 'app-credit-card',
   templateUrl: './credit-card.component.html',
@@ -22,14 +24,13 @@ import { CreditCardService } from 'src/app/shared/services/credit-card.service';
 })
 export class CreditCardComponent implements OnInit {
   ccForm: FormGroup;
-  // date = new FormControl(moment());
 
   constructor(
     private fb: FormBuilder,
     private snackbar: MatSnackBar,
     private creditService: CreditCardService,
     private router: Router
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.createCCForm();
@@ -37,16 +38,14 @@ export class CreditCardComponent implements OnInit {
 
   createCCForm(): void {
     this.ccForm = this.fb.group({
-      ccNumber: ['', Validators.required],
-      ccHolder: ['', Validators.required],
-      ccExpirationDate: [moment(), Validators.required],
-      ccSecurityCode: null,
-      ccAmount: ['', Validators.required],
+      cardNumber: ['', Validators.required],
+      bankName: ['', Validators.required],
+      date: [moment(), Validators.required],
     });
   }
 
   get expireDate() {
-    return this.ccForm.get('ccExpirationDate');
+    return this.ccForm.get('date');
   }
 
   chosenYearHandler(normalizedYear: Moment) {
@@ -80,7 +79,10 @@ export class CreditCardComponent implements OnInit {
     if (this.ccForm.valid) {
       this.creditService
         .saveCreditCardDetails(this.ccForm.value)
-        .subscribe((res) => {
+        .subscribe((response: any) => {
+          let data = new Array<CreditCardPaymentDetails>();
+          data = response;
+          this.creditService.setBankDetails(data);
           this.snackbar.openFromComponent(SuccessSnackbarComponent, {
             data: {
               customMsg: Message.CREDIT_CARD_ADDED_SUCCESS,
@@ -108,12 +110,12 @@ export class CreditCardComponent implements OnInit {
       return false;
     } else if (e.charCode >= 48 && e.charCode <= 57) {
       if (
-        (this.ccForm.value.ccNumber.length === 4 ||
-          this.ccForm.value.ccNumber.length === 9 ||
-          this.ccForm.value.ccNumber.length === 14) &&
-        field === 'ccNumber'
+        (this.ccForm.value.cardNumber.length === 4 ||
+          this.ccForm.value.cardNumber.length === 9 ||
+          this.ccForm.value.cardNumber.length === 14) &&
+        field === 'cardNumber'
       ) {
-        this.ccForm.get('ccNumber').setValue(this.ccForm.value.ccNumber + ' ');
+        this.ccForm.get('cardNumber').setValue(this.ccForm.value.cardNumber + ' ');
       }
       if (
         field === 'ccSecurityCode' &&
@@ -124,5 +126,9 @@ export class CreditCardComponent implements OnInit {
       }
       return true;
     } else return false;
+  }
+
+  reset() {
+    this.ccForm.reset();
   }
 }

@@ -15,6 +15,7 @@ import { StoreModule } from '@ngrx/store';
 import { HttpClientModule } from '@angular/common/http';
 import { MatTableModule } from '@angular/material/table';
 import { CommonModule } from '@angular/common';
+import { Angular2CsvModule } from 'angular2-csv';
 
 const modules: any = [
   MatButtonModule,
@@ -27,6 +28,7 @@ const modules: any = [
   MatSnackBarModule,
   MatIconModule,
   MatTableModule,
+  Angular2CsvModule,
 ];
 @NgModule({
   imports: modules,

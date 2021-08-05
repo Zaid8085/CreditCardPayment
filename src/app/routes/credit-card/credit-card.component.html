@@ -1,82 +1,49 @@
-<mat-card class="mat-elevation-z8">
-  <mat-card-header>
-    <mat-card-title>Payment</mat-card-title>
-  </mat-card-header>
-  <mat-card-content>
-    <mat-grid-list cols="2" rowHeight="2:1">
-      <form [formGroup]="ccForm" (ngSubmit)="onSubmit()">
-        <mat-grid-tile>
-          <mat-form-field appearance="outline">
-            <mat-label>Credit Card Number</mat-label>
-            <input
-              placeholder="0000 0000 0000 0000"
-              maxlength="19"
-              minlength="19"
-              matInput
-              formControlName="ccNumber"
-              (keypress)="onCCNumChange($event, 'ccNumber')"
-            />
-          </mat-form-field>
-        </mat-grid-tile>
-        <mat-grid-tile>
-          <mat-form-field appearance="outline">
-            <mat-label>Card Holder</mat-label>
-            <input matInput formControlName="ccHolder" />
-          </mat-form-field>
-        </mat-grid-tile>
-        <mat-grid-tile>
-          <mat-form-field id="datepicker" appearance="outline">
-            <mat-label>Expiration Date</mat-label>
-            <input
-              matInput
-              [matDatepicker]="dp"
-              formControlName="ccExpirationDate"
-            />
-            <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
-            <mat-datepicker
-              #dp
-              startView="multi-year"
-              (yearSelected)="chosenYearHandler($event)"
-              (monthSelected)="chosenMonthHandler($event, dp)"
-              panelClass="example-month-picker"
-            >
-            </mat-datepicker>
-          </mat-form-field>
-        </mat-grid-tile>
-        <mat-grid-tile>
-          <mat-form-field appearance="outline">
-            <mat-label>Security Code</mat-label>
-            <input
-              class="security-code"
-              matInput
-              formControlName="ccSecurityCode"
-              (keypress)="onCCNumChange($event, 'ccSecurityCode')"
-            />
-            <span class="material-icons"> password </span>
-          </mat-form-field>
-        </mat-grid-tile>
-        <mat-grid-tile class="border-bottom">
-          <mat-form-field appearance="outline">
-            <mat-label>Amount</mat-label>
-            <input
-              matInput
-              formControlName="ccAmount"
-              (keypress)="onCCNumChange($event, 'ccAmount')"
-            />
-          </mat-form-field>
-        </mat-grid-tile>
-        <mat-grid-tile class="border-bottom"></mat-grid-tile>
-        <mat-grid-tile>
-          <button
-            mat-raised-button
-            color="primary"
-            class="submit-btn"
-            type="submit"
-          >
-            <span class="material-icons"> save </span> Save
-          </button>
-        </mat-grid-tile>
-      </form>
-    </mat-grid-list>
-  </mat-card-content>
-</mat-card>
+<div class="container">
+  <mat-card class="mat-elevation-z8">
+    <mat-card-header>
+      <mat-card-title>Add Bank Details</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+      <mat-grid-list cols="1" rowHeight="6:1">
+        <form [formGroup]="ccForm" (ngSubmit)="onSubmit()">
+          <mat-grid-tile>
+            <mat-form-field appearance="outline">
+              <mat-label>Credit Card Number</mat-label>
+              <input placeholder="0000 0000 0000 0000" maxlength="19" minlength="19" matInput formControlName="cardNumber"
+                (keypress)="onCCNumChange($event, 'cardNumber')" />
+              <span *ngIf="ccForm.valid" style="color: green;" class="material-icons" matSuffix>
+                credit_score
+              </span>
+              </mat-form-field>
+              </mat-grid-tile>
+              <mat-grid-tile>
+                <mat-form-field appearance="outline">
+              <mat-label>Bank Name</mat-label>
+              <input matInput formControlName="bankName" />
+              </mat-form-field>
+              </mat-grid-tile>
+              <mat-grid-tile>
+                <mat-form-field id="datepicker" appearance="outline">
+                  <mat-label>Expiration Date</mat-label>
+              <input matInput [matDatepicker]="dp" formControlName="date" />
+              <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
+              <mat-datepicker #dp startView="multi-year" (yearSelected)="chosenYearHandler($event)"
+                (monthSelected)="chosenMonthHandler($event, dp)" panelClass="example-month-picker">
+              </mat-datepicker>
+              </mat-form-field>
+              </mat-grid-tile>
+              <mat-grid-tile>
+            <div class="btn-grp">
+              <button mat-raised-button color="warn" class="submit-btn" (click)="reset()">
+                <span class="material-icons"> clear </span> Reset
+              </button>
+              <button [disabled]="!ccForm.valid" mat-raised-button color="primary" class="submit-btn" type="submit">
+                <span class="material-icons"> save </span> Save
+              </button>
+            </div>
+          </mat-grid-tile>
+          </form>
+          </mat-grid-list>
+          </mat-card-content>
+          </mat-card>
+</div>

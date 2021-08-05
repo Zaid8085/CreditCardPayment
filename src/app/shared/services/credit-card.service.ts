@@ -1,23 +1,28 @@
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpClientModule, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { CreditCardPaymentDetails } from '../models/credit-card-payment-details';
+import { Observable } from "rxjs";
 
 @Injectable({
   providedIn: 'root',
 })
 export class CreditCardService {
+  bankDetails: CreditCardPaymentDetails[];
+
   constructor(private httpClient: HttpClient) {}
 
-  saveCreditCardDetails(ccDetails: CreditCardPaymentDetails) {
+  saveCreditCardDetails(ccDetails: CreditCardPaymentDetails): Observable<CreditCardPaymentDetails> {
     return this.httpClient.post<CreditCardPaymentDetails>(
-      'http://localhost:3004/credit-card-details',
+      'http://localhost:8080/api/addBankDetails',
       ccDetails
     );
   }
 
-  getCreditCardDetails() {
-    return this.httpClient.get<CreditCardPaymentDetails[]>(
-      'http://localhost:3004/credit-card-details'
-    );
+  setBankDetails(ccDetails: CreditCardPaymentDetails[]) {
+    this.bankDetails = ccDetails;
+  }
+
+  getCreditCardDetails(): CreditCardPaymentDetails[] {
+    return this.bankDetails;
   }
 }

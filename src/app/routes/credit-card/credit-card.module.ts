@@ -26,6 +26,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { CreditCardDetailsComponent } from '../credit-card-details/credit-card-details.component';
 import { MatTableModule } from '@angular/material/table';
 import { RootMaterialModule } from 'src/app/shared/modules/root-material.module';
+import { CreditDetailsModule } from '../credit-card-details/credit-details.module';
 
 export const MY_FORMATS = {
   parse: {
@@ -41,7 +42,7 @@ export const MY_FORMATS = {
 
 @NgModule({
   declarations: [CreditCardComponent, CreditCardDetailsComponent],
-  imports: [CommonModule, CreditCardRoutingModule, RootMaterialModule],
+  imports: [CommonModule, CreditCardRoutingModule, RootMaterialModule, MatIconModule, CreditDetailsModule],
   providers: [
     {
       provide: DateAdapter,

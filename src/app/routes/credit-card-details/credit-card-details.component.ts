@@ -20,18 +20,16 @@ export class CreditCardDetailsComponent implements OnInit {
   }
 
   getCreditDetails() {
-    this.creditCardService
-      .getCreditCardDetails()
-      .subscribe((data: CreditCardPaymentDetails[]) => {
-        console.log(data);
-        if (data.length > 0) {
-          data.forEach((resp: CreditCardPaymentDetails) => {
-            resp.ccExpirationDate = moment(resp.ccExpirationDate)
-              .format('MM/YYYY')
+    let data = this.creditCardService.getCreditCardDetails();
+    data.sort((a, b) => Number(new Date(b['date'])) - Number(new Date((a['date']))))
+    data.forEach((resp: CreditCardPaymentDetails) => {
+      resp.date = moment(resp.date)
+        .format('MMM-YYYY')
               .toString();
-          });
-        }
-        this.dataSource = data;
-      });
+      resp.cardNumber = resp.cardNumber.replace(resp.cardNumber.substring(5, resp.cardNumber.length), "**** **** ****")
+    });
+
+
+    this.dataSource = data;
   }
 }

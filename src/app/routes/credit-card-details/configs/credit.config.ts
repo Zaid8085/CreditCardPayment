@@ -1,17 +1,11 @@
 export const columns = [
-  { key: 'id', label: 'ID' },
-  { key: 'ccNumber', label: 'Credit Number' },
-  { key: 'ccHolder', label: ' Credit Holder' },
-  { key: 'ccExpirationDate', label: 'Expiration Date' },
-  { key: 'ccSecurityCode', label: 'Security Code' },
-  { key: 'ccAmount', label: 'Amount' },
+  { key: 'cardNumber', label: 'Card Number' },
+  { key: 'bankName', label: ' Bank Name' },
+  { key: 'date', label: 'Expiry Date' }
 ];
 
 export const displayedColumns = [
-  'id',
-  'ccNumber',
-  'ccHolder',
-  'ccExpirationDate',
-  'ccSecurityCode',
-  'ccAmount',
+  'cardNumber',
+  'bankName',
+  'date',
 ];
